@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Federation — Fate of the Feds</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Archivo', sans-serif;
+    background: #f7efdd;
+    color: #32322c;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── COLOURS ── */
+  :root {
+    --olive:   #32322c;
+    --paper:   #f7efdd;
+    --yellow:  #f6ae2d;
+    --pink:    #e21f9c;
+    --green:   #8ebd84;
+    --blue:    #63b2c9;
+    --purple:  #64156f;
+    --magenta: #ae0a7b;
+    --line:    #d9cdb4;
+  }
+
+  /* ── GRID ── */
+  #grid-view { padding: 24px; }
+
+  .grid-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .grid-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 11px;
+    letter-spacing: .22em;
+    color: var(--olive);
+    opacity: .75;
+  }
+  .grid-count {
+    font-family: 'Special Elite', monospace;
+    font-size: 10px;
+    color: var(--magenta);
+    letter-spacing: .1em;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 10px;
+  }
+
+  .fed-card {
+    background: #fff;
+    border: 2px solid var(--line);
+    border-radius: 8px;
+    padding: 14px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: border-color .2s, transform .22s cubic-bezier(.16,1,.3,1), box-shadow .22s;
+    text-align: center;
+  }
+  .fed-card:hover {
+    border-color: var(--olive);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 rgba(50,50,44,.13);
+  }
+  .fed-card.founding {
+    border-color: var(--yellow);
+    background: #fffbf0;
+  }
+  .fed-card.founding:hover { border-color: var(--olive); }
+
+  .badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--olive);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 14px;
+    color: #fff;
+  }
+  .badge img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .card-name {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 11.5px;
+    color: var(--olive);
+    line-height: 1.2;
+  }
+  .card-num {
+    font-family: 'Special Elite', monospace;
+    font-size: 9px;
+    letter-spacing: .1em;
+    color: var(--magenta);
+  }
+  .card-role {
+    font-size: 10px;
+    color: var(--olive);
+    opacity: .65;
+    line-height: 1.3;
+  }
+  .founding-badge {
+    font-family: 'Special Elite', monospace;
+    font-size: 8.5px;
+    letter-spacing: .12em;
+    background: var(--yellow);
+    color: var(--olive);
+    padding: 3px 8px;
+    border-radius: 20px;
+  }
+
+  /* ── EXPANDED VIEW ── */
+  #expanded-view {
+    display: none;
+    padding: clamp(24px, 3vw, 44px);
+    flex-direction: column;
+    gap: 18px;
+    min-height: 100%;
+  }
+  #expanded-view.visible { display: flex; }
+
+  .back-btn {
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: none;
+    border: 2px solid var(--olive);
+    border-radius: 30px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: 'Special Elite', monospace;
+    font-size: 11px;
+    letter-spacing: .12em;
+    color: var(--olive);
+    transition: background .18s, color .18s;
+  }
+  .back-btn:hover { background: var(--olive); color: var(--paper); }
+
+  .expanded-inner {
+    display: flex;
+    gap: clamp(18px, 3vw, 36px);
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  .expanded-photo {
+    width: clamp(100px, 15vw, 160px);
+    aspect-ratio: 3/4;
+    border: 3px solid var(--olive);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(28px, 5vw, 52px);
+    color: #fff;
+  }
+  .expanded-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .expanded-meta { flex: 1; min-width: 180px; }
+  .expanded-label {
+    font-family: 'Special Elite', monospace;
+    font-size: 10px;
+    letter-spacing: .22em;
+    margin-bottom: 8px;
+  }
+  .expanded-name {
+    margin: 0 0 6px;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(26px, 4vw, 48px);
+    line-height: .92;
+    color: var(--olive);
+  }
+  .expanded-role {
+    font-family: 'Special Elite', monospace;
+    font-size: 13px;
+    margin: 10px 0 16px;
+    color: var(--olive);
+    opacity: .8;
+  }
+  .expanded-bio {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--olive);
+    max-width: 42ch;
+  }
+  .expanded-tag {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: 'Special Elite', monospace;
+    font-size: 10px;
+    letter-spacing: .1em;
+    padding: 6px 14px;
+    border-radius: 20px;
+    color: #fff;
+  }
+  .founding-stamp {
+    display: inline-block;
+    margin-top: 6px;
+    margin-left: 6px;
+    font-family: 'Special Elite', monospace;
+    font-size: 10px;
+    letter-spacing: .1em;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: var(--yellow);
+    color: var(--olive);
+  }
+
+  .stamp {
+    align-self: flex-end;
+    margin-top: auto;
+    border: 3px solid currentColor;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 16px;
+    padding: 7px 18px;
+    border-radius: 4px;
+    opacity: .8;
+    letter-spacing: .1em;
+    transform: rotate(-5deg);
+  }
+
+  @keyframes fold-in {
+    0%   { opacity:0; transform: perspective(800px) rotateX(-14deg) translateY(10px) scale(.97); }
+    70%  { transform: perspective(800px) rotateX(1deg) translateY(-1px) scale(1.002); }
+    100% { opacity:1; transform: perspective(800px) rotateX(0) translateY(0) scale(1); }
+  }
+  .fold-in { animation: fold-in .48s cubic-bezier(.16,1,.3,1) both; }
+</style>
+</head>
+<body>
+
+<div id="grid-view">
+  <div class="grid-header">
+    <span class="grid-label">PERSONNEL FILES — CLICK TO OPEN</span>
+    <span class="grid-count" id="fed-count"></span>
+  </div>
+  <div class="grid" id="fed-grid"></div>
+</div>
+
+<div id="expanded-view">
+  <button class="back-btn" onclick="closeExpanded()">← BACK TO ROSTER</button>
+  <div class="expanded-inner">
+    <div class="expanded-photo" id="exp-photo"></div>
+    <div class="expanded-meta">
+      <div class="expanded-label" id="exp-label"></div>
+      <h3 class="expanded-name" id="exp-name"></h3>
+      <div class="expanded-role" id="exp-role"></div>
+      <p class="expanded-bio" id="exp-bio">A vital part of the Federation — bringing their unique expertise to the table and helping build a stronger, more connected Caribbean one game night at a time.</p>
+      <span class="expanded-tag" id="exp-tag"></span>
+      <span class="founding-stamp" id="exp-founding" style="display:none;">★ FOUNDING FED</span>
+    </div>
+  </div>
+  <div class="stamp" id="exp-stamp">FED CLEARED</div>
+</div>
+
+<script>
+  // ── PALETTE cycling through brand colours ──
+  const COLOURS = [
+    '#e21f9c','#f6ae2d','#8ebd84','#63b2c9',
+    '#64156f','#ae0a7b','#e21f9c','#f6ae2d',
+    '#8ebd84','#63b2c9','#64156f','#ae0a7b',
+    '#e21f9c','#f6ae2d','#8ebd84','#63b2c9',
+    '#64156f','#ae0a7b','#e21f9c','#f6ae2d',
+    '#8ebd84','#63b2c9','#64156f','#ae0a7b',
+    '#e21f9c','#f6ae2d','#8ebd84','#63b2c9',
+    '#64156f','#ae0a7b','#e21f9c','#f6ae2d',
+    '#8ebd84','#63b2c9','#64156f'
+  ];
+
+  let allFeds = [];
+
+  // ── Load JSON (same folder as this HTML) ──
+  fetch('./feds-roster.json')
+    .then(r => r.json())
+    .then(data => {
+      allFeds = data;
+      renderGrid(data);
+    })
+    .catch(() => {
+      // Fallback: show a helpful message if JSON can't load
+      document.getElementById('fed-grid').innerHTML =
+        '<p style="font-family:\'Special Elite\',monospace;color:#ae0a7b;padding:20px;">⚠ Could not load feds.json — make sure it\'s in the same folder as this HTML file.</p>';
+    });
+
+  function renderGrid(feds) {
+    const grid = document.getElementById('fed-grid');
+    const count = document.getElementById('fed-count');
+    count.textContent = feds[0].num + ' → ' + feds[feds.length - 1].num;
+    grid.innerHTML = '';
+
+    feds.forEach((fed, i) => {
+      const color = COLOURS[i % COLOURS.length];
+      const card = document.createElement('button');
+      card.className = 'fed-card' + (fed.founding ? ' founding' : '');
+      card.onclick = () => openExpanded(fed, color);
+
+      // Badge: photo or initials
+      const badgeEl = fed.photo
+        ? `<div class="badge" style="background:${color};"><img src="${fed.photo}" alt="${fed.name}" onerror="this.parentNode.innerHTML='<span>${fed.initials}</span>'"></div>`
+        : `<div class="badge" style="background:${color};">${fed.initials}</div>`;
+
+      card.innerHTML = `
+        ${badgeEl}
+        <div class="card-name">${fed.name}</div>
+        <div class="card-num">${fed.num}</div>
+        <div class="card-role">${fed.role}</div>
+        ${fed.founding ? '<span class="founding-badge">★ FOUNDING</span>' : ''}
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function openExpanded(fed, color) {
+    // Photo or initials
+    const photoEl = document.getElementById('exp-photo');
+    photoEl.style.background = color;
+    if (fed.photo) {
+      photoEl.innerHTML = `<img src="${fed.photo}" alt="${fed.name}" onerror="this.parentNode.innerHTML='${fed.initials}'">`;
+    } else {
+      photoEl.textContent = fed.initials;
+    }
+
+    document.getElementById('exp-label').style.color = color;
+    document.getElementById('exp-label').textContent =
+      (fed.founding ? 'FOUNDING FED · ' : 'FIELD AGENT · ') + fed.num;
+    document.getElementById('exp-name').textContent = fed.name;
+    document.getElementById('exp-role').textContent = fed.role;
+
+    const tag = document.getElementById('exp-tag');
+    tag.style.background = color;
+    tag.textContent = fed.role;
+
+    const stamp = document.getElementById('exp-stamp');
+    stamp.style.color = color;
+    stamp.textContent = fed.founding ? 'FOUNDING FED' : 'FED CLEARED';
+
+    const foundingBadge = document.getElementById('exp-founding');
+    foundingBadge.style.display = fed.founding ? 'inline-block' : 'none';
+
+    // Switch views
+    document.getElementById('grid-view').style.display = 'none';
+    const expView = document.getElementById('expanded-view');
+    expView.classList.add('visible');
+    expView.classList.remove('fold-in');
+    void expView.offsetWidth;
+    expView.classList.add('fold-in');
+  }
+
+  function closeExpanded() {
+    document.getElementById('expanded-view').classList.remove('visible');
+    document.getElementById('grid-view').style.display = 'block';
+  }
+</script>
+</body>
+</html>

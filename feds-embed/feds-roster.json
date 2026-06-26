@@ -1,21 +1,21 @@
 [
   {
-    "num": "FED-001",
+    "num": "FED-0G",
     "name": "Alex Ashley",
     "role": "",
     "initials": "AA",
     "photo": "",
     "founding": true,
-    "bio": "The architect of FOTF's vision. Alex brought the Caribbean table experience to life — fusing nostalgia, networking, and solar purpose into one game. Equal parts dreamer and doer, he's the reason the Federation exists at all."
+    "bio": ""
   },
   {
-    "num": "FED-002",
+    "num": "FED-0G",
     "name": "Alina Sosa",
     "role": "",
     "initials": "AS",
     "photo": "",
     "founding": true,
-    "bio": "The engine behind every FOTF night. Alina turns vision into reality — from venue logistics to the community relationships that make every game session unforgettable. If Alex dreams it, Alina builds it."
+    "bio": ""
   },
   {
     "num": "FED-003",
@@ -290,7 +290,7 @@
   {
     "num": "FED-033",
     "name": "Sanáa Willacy",
-    "role": "",
+    "role": "Web Designer",
     "initials": "SW",
     "photo": "",
     "founding": false,
