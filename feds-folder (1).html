@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Meet the Feds — Fate of the Feds</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Archivo', sans-serif;
+  background: #26261f;
+  color: #32322c;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  padding: clamp(40px,6vh,80px) clamp(16px,4vw,56px) clamp(40px,6vh,80px);
+}
+
+/* ── VARIABLES ── */
+:root {
+  --olive:   #32322c;
+  --olive-night: #26261f;
+  --paper:   #f7efdd;
+  --paper2:  #efe4c8;
+  --gold:    #c99120;
+  --yellow:  #f6ae2d;
+  --pink:    #e21f9c;
+  --green:   #8ebd84;
+  --blue:    #63b2c9;
+  --purple:  #64156f;
+  --magenta: #ae0a7b;
+  --line:    #d9cdb4;
+  --cream:   #fbf6ea;
+}
+
+/* ── SECTION HEADER ── */
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: clamp(32px,5vh,56px);
+}
+.section-label {
+  font-family: 'Special Elite', monospace;
+  font-size: 11px;
+  letter-spacing: .28em;
+  color: var(--yellow);
+  margin-bottom: 10px;
+}
+.section-title {
+  margin: 0;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(36px,6vw,80px);
+  line-height: .88;
+  letter-spacing: -.025em;
+  color: #fff;
+}
+.section-title span { color: var(--yellow); }
+.section-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.07);
+  border: 1.5px solid rgba(255,255,255,.15);
+  border-radius: 50px;
+  padding: 10px 18px;
+  font-family: 'Special Elite', monospace;
+  font-size: 12px;
+  letter-spacing: .14em;
+  color: #fff;
+  white-space: nowrap;
+  align-self: center;
+}
+.pill-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  flex-shrink: 0;
+}
+
+/* ── FOLDER OUTER ── */
+.folder-outer {
+  position: relative;
+  padding-top: 28px;
+}
+.folder-back {
+  position: absolute;
+  inset: 8px -8px -14px -8px;
+  background: var(--gold);
+  border: 3px solid var(--olive);
+  border-radius: 12px;
+  box-shadow: 0 24px 0 rgba(0,0,0,.28);
+  z-index: 0;
+}
+.folder-tab {
+  position: absolute;
+  top: 0px;
+  left: 32px;
+  background: var(--gold);
+  border: 3px solid var(--olive);
+  border-bottom: none;
+  border-radius: 10px 10px 0 0;
+  padding: 7px 20px;
+  font-family: 'Special Elite', monospace;
+  font-size: 10px;
+  letter-spacing: .18em;
+  color: var(--olive);
+  z-index: 2;
+  animation: tab-lift .5s cubic-bezier(.16,1,.3,1) both;
+}
+.folder-clip {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 13px;
+  background: var(--olive);
+  border-radius: 0 0 7px 7px;
+  z-index: 5;
+}
+
+/* ── FOLDER INNER ── */
+.folder-inner {
+  position: relative;
+  z-index: 2;
+  background: var(--paper);
+  border: 3px solid var(--olive);
+  border-radius: 10px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.4);
+  display: flex;
+  min-height: 680px;
+  overflow: hidden;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  width: 214px;
+  flex-shrink: 0;
+  background: var(--paper2);
+  border-right: 3px solid var(--olive);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0 16px;
+  gap: 0;
+}
+.sidebar-label {
+  padding: 0 16px 8px;
+  font-family: 'Special Elite', monospace;
+  font-size: 9.5px;
+  letter-spacing: .22em;
+  color: var(--olive);
+  opacity: .6;
+}
+.sidebar-divider {
+  height: 1px;
+  background: var(--olive);
+  opacity: .18;
+  margin: 14px 16px;
+}
+.sidebar-spacer { flex: 1; }
+.sidebar-badge {
+  margin: 0 12px;
+  padding: 12px;
+  background: var(--olive);
+  border-radius: 8px;
+  text-align: center;
+}
+.sidebar-badge-sub {
+  font-family: 'Special Elite', monospace;
+  font-size: 9px;
+  letter-spacing: .2em;
+  color: var(--yellow);
+}
+.sidebar-badge-main {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 12px;
+  color: #fff;
+  margin-top: 3px;
+}
+
+/* ── TAB BUTTONS ── */
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 16px;
+  cursor: pointer;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-left: 4px solid transparent;
+  width: 100%;
+  transition: background .25s ease, border-color .25s ease, transform .28s cubic-bezier(.16,1,.3,1);
+}
+.tab-btn:hover { background: rgba(50,50,44,.07); }
+.tab-btn.active {
+  background: rgba(50,50,44,.12);
+  border-left-color: var(--olive);
+  transform: translateX(4px);
+}
+.tab-badge {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--olive);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 13px;
+  color: #fff;
+}
+.tab-badge img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.tab-name {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 12px;
+  color: var(--olive);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
+}
+.tab-sub {
+  font-family: 'Special Elite', monospace;
+  font-size: 9px;
+  letter-spacing: .1em;
+  color: var(--olive);
+  opacity: .65;
+  margin-top: 2px;
+}
+
+/* ── PANEL AREA ── */
+.panel-wrap {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  perspective: 900px;
+}
+.panel {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: perspective(900px) rotateX(-14deg) scale(.96);
+  transform-origin: top center;
+  transition:
+    opacity .48s cubic-bezier(.16,1,.3,1),
+    transform .52s cubic-bezier(.16,1,.3,1);
+  background: var(--paper);
+  overflow-y: auto;
+}
+.panel.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: perspective(900px) rotateX(0deg) scale(1);
+}
+.panel.leaving {
+  opacity: 0;
+  pointer-events: none;
+  transform: perspective(900px) rotateX(10deg) scale(.97);
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+/* ── FOUNDING DOSSIER ── */
+.dossier {
+  padding: clamp(24px,3vw,48px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 100%;
+}
+.dossier-top {
+  display: flex;
+  gap: clamp(18px,3vw,36px);
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.dossier-photo {
+  width: clamp(110px,16vw,180px);
+  aspect-ratio: 3/4;
+  border: 3px solid var(--olive);
+  border-radius: 6px;
+  flex-shrink: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 40px;
+  color: #fff;
+}
+.dossier-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.dossier-meta { flex: 1; min-width: 180px; }
+.dossier-num {
+  font-family: 'Special Elite', monospace;
+  font-size: 10px;
+  letter-spacing: .24em;
+  margin-bottom: 8px;
+}
+.dossier-name {
+  margin: 0 0 6px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(26px,4.5vw,54px);
+  line-height: .9;
+  color: var(--olive);
+}
+.dossier-role {
+  font-family: 'Special Elite', monospace;
+  font-size: 13px;
+  margin: 10px 0 14px;
+  color: var(--olive);
+  opacity: .8;
+}
+.dossier-bio {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--olive);
+  max-width: 40ch;
+}
+.dossier-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.tag {
+  font-family: 'Special Elite', monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  padding: 6px 13px;
+  border-radius: 20px;
+  color: #fff;
+}
+.dossier-stamp {
+  align-self: flex-end;
+  margin-top: auto;
+  border: 3px solid currentColor;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 17px;
+  padding: 8px 18px;
+  border-radius: 4px;
+  opacity: .8;
+  letter-spacing: .1em;
+  transform: rotate(-6deg);
+  animation: stamp-drop .55s cubic-bezier(.16,1,.3,1) .35s both;
+}
+
+/* ── GRID VIEW ── */
+.grid-wrap { padding: clamp(20px,2.5vw,36px); }
+.grid-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.grid-label {
+  font-family: 'Special Elite', monospace;
+  font-size: 11px;
+  letter-spacing: .2em;
+  color: var(--olive);
+  opacity: .7;
+}
+.grid-range {
+  font-family: 'Special Elite', monospace;
+  font-size: 10px;
+  color: var(--magenta);
+  letter-spacing: .1em;
+}
+.fed-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(126px, 1fr));
+  gap: 9px;
+}
+.fed-card {
+  background: #fff;
+  border: 2px solid var(--line);
+  border-radius: 8px;
+  padding: 13px 9px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+  transition: border-color .2s, transform .22s cubic-bezier(.16,1,.3,1), box-shadow .22s;
+  text-align: center;
+  width: 100%;
+}
+.fed-card:hover {
+  border-color: var(--olive);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 rgba(50,50,44,.13);
+}
+.fed-card.founding-card { border-color: var(--yellow); background: #fffbf1; }
+.fed-card.founding-card:hover { border-color: var(--olive); }
+.card-badge {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: 2px solid var(--olive);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 13px;
+  color: #fff;
+}
+.card-badge img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.card-name {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 11px;
+  color: var(--olive);
+  line-height: 1.2;
+}
+.card-num {
+  font-family: 'Special Elite', monospace;
+  font-size: 9px;
+  letter-spacing: .1em;
+  color: var(--magenta);
+}
+.card-role {
+  font-size: 9.5px;
+  color: var(--olive);
+  opacity: .6;
+  line-height: 1.3;
+}
+.founding-pip {
+  font-family: 'Special Elite', monospace;
+  font-size: 8px;
+  letter-spacing: .1em;
+  background: var(--yellow);
+  color: var(--olive);
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+/* ── EXPANDED FED ── */
+.exp-wrap {
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: clamp(24px,3vw,44px);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(14px);
+  transition: opacity .35s cubic-bezier(.16,1,.3,1), transform .38s cubic-bezier(.16,1,.3,1);
+  overflow-y: auto;
+}
+.exp-wrap.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-btn {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 2px solid var(--olive);
+  border-radius: 30px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-family: 'Special Elite', monospace;
+  font-size: 11px;
+  letter-spacing: .12em;
+  color: var(--olive);
+  transition: background .18s, color .18s;
+}
+.back-btn:hover { background: var(--olive); color: var(--paper); }
+.exp-inner {
+  display: flex;
+  gap: clamp(16px,3vw,36px);
+  align-items: flex-start;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.exp-photo {
+  width: clamp(100px,14vw,155px);
+  aspect-ratio: 3/4;
+  border: 3px solid var(--olive);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 40px;
+  color: #fff;
+}
+.exp-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+.exp-meta { flex: 1; min-width: 170px; }
+.exp-label {
+  font-family: 'Special Elite', monospace;
+  font-size: 10px;
+  letter-spacing: .22em;
+  margin-bottom: 8px;
+}
+.exp-name {
+  margin: 0 0 6px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(24px,4vw,46px);
+  line-height: .92;
+  color: var(--olive);
+}
+.exp-role {
+  font-family: 'Special Elite', monospace;
+  font-size: 13px;
+  margin: 10px 0 14px;
+  color: var(--olive);
+  opacity: .8;
+}
+.exp-bio {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--olive);
+  max-width: 42ch;
+}
+.exp-tag {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: 'Special Elite', monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  padding: 6px 14px;
+  border-radius: 20px;
+  color: #fff;
+}
+.exp-stamp {
+  align-self: flex-end;
+  margin-top: auto;
+  border: 3px solid currentColor;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 15px;
+  padding: 7px 18px;
+  border-radius: 4px;
+  opacity: .8;
+  letter-spacing: .1em;
+  transform: rotate(-5deg);
+}
+
+/* ── NEW RECRUIT PANEL ── */
+.recruit-panel {
+  padding: clamp(24px,3vw,48px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  text-align: center;
+  min-height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.recruit-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(60px,12vw,140px);
+  color: rgba(50,50,44,.055);
+  letter-spacing: -.03em;
+  pointer-events: none;
+  user-select: none;
+}
+.recruit-file {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  border: 3px dashed var(--olive);
+  border-radius: 12px;
+  padding: clamp(28px,4vw,52px) clamp(22px,3vw,44px);
+  background: rgba(255,255,255,.65);
+}
+.recruit-file-tab {
+  position: absolute;
+  top: -22px;
+  left: 28px;
+  background: var(--yellow);
+  border: 3px solid var(--olive);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+  padding: 5px 16px;
+  font-family: 'Special Elite', monospace;
+  font-size: 10px;
+  letter-spacing: .18em;
+  color: var(--olive);
+}
+.recruit-q {
+  width: 76px; height: 76px;
+  border-radius: 50%;
+  background: var(--olive);
+  border: 3px dashed var(--yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+}
+.recruit-q-mark {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 40px;
+  color: var(--yellow);
+  line-height: 1;
+}
+.recruit-fed-num {
+  font-family: 'Special Elite', monospace;
+  font-size: 10px;
+  letter-spacing: .28em;
+  color: var(--magenta);
+  margin-bottom: 8px;
+}
+.recruit-title {
+  margin: 0 0 10px;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(26px,4vw,44px);
+  line-height: .92;
+  color: var(--olive);
+}
+.recruit-body {
+  margin: 0 auto 22px;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--olive);
+  max-width: 34ch;
+}
+.redacted-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 7px;
+  text-align: left;
+}
+.redacted-key {
+  font-family: 'Special Elite', monospace;
+  font-size: 11px;
+  color: var(--olive);
+  opacity: .5;
+  width: 58px;
+  flex-shrink: 0;
+}
+.redacted-bar {
+  flex: 1;
+  height: 13px;
+  background: var(--olive);
+  border-radius: 2px;
+  opacity: .16;
+}
+.redacted-val {
+  font-family: 'Special Elite', monospace;
+  font-size: 11px;
+  color: var(--magenta);
+  letter-spacing: .1em;
+}
+.recruit-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--olive);
+  color: var(--yellow);
+  text-decoration: none;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 14px;
+  padding: 14px 28px;
+  border-radius: 50px;
+  border: 3px solid var(--yellow);
+  box-shadow: 0 6px 0 rgba(50,50,44,.35);
+  transition: transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s;
+  margin-top: 4px;
+}
+.recruit-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 0 rgba(50,50,44,.35);
+}
+.recruit-stamp {
+  border: 3px solid var(--magenta);
+  color: var(--magenta);
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 15px;
+  padding: 7px 18px;
+  border-radius: 4px;
+  opacity: .75;
+  letter-spacing: .1em;
+  transform: rotate(-8deg);
+  display: inline-block;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes tab-lift {
+  0%  { transform: scaleY(.6) translateY(8px); opacity: .4; }
+  100%{ transform: scaleY(1) translateY(0);    opacity: 1;  }
+}
+@keyframes stamp-drop {
+  0%  { opacity:0; transform: scale(1.5) rotate(-12deg); }
+  65% { opacity:1; transform: scale(.95) rotate(4deg); }
+  100%{ opacity:.8; transform: scale(1) rotate(-6deg); }
+}
+</style>
+</head>
+<body>
+
+<!-- SECTION HEADER -->
+<div class="section-header">
+  <div>
+    <div class="section-label">CLASSIFIED — PERSONNEL FILES</div>
+    <h2 class="section-title">Meet the <span>Feds.</span></h2>
+  </div>
+  <div class="section-pill">
+    <span class="pill-dot"></span>
+    <span id="total-count">35 ACTIVE FEDS</span>
+  </div>
+</div>
+
+<!-- FOLDER -->
+<div class="folder-outer">
+  <div class="folder-back"></div>
+  <div class="folder-tab">PERSONNEL</div>
+  <div class="folder-clip"></div>
+
+  <div class="folder-inner">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-label">FOUNDING FEDS</div>
+      <div id="founding-tabs"></div>
+
+      <div class="sidebar-divider"></div>
+      <div class="sidebar-label">THE FEDERATION</div>
+
+      <button class="tab-btn" id="tab-federation" onclick="switchTo('federation')">
+        <div class="tab-badge" id="fed-tab-badge" style="background:var(--yellow);color:var(--olive);font-size:15px;"></div>
+        <div>
+          <div class="tab-name">All Feds</div>
+          <div class="tab-sub" id="fed-tab-sub">FED-003 → FED-035</div>
+        </div>
+      </button>
+
+      <button class="tab-btn" id="tab-recruit" onclick="switchTo('recruit')">
+        <div class="tab-badge" style="background:var(--olive);border:2px dashed var(--yellow);font-size:20px;color:var(--yellow);">?</div>
+        <div>
+          <div class="tab-name">New Recruit</div>
+          <div class="tab-sub">YOUR FILE AWAITS</div>
+        </div>
+      </button>
+
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-badge">
+        <div class="sidebar-badge-sub">FATE OF THE FEDS</div>
+        <div class="sidebar-badge-main">CLASSIFIED</div>
+      </div>
+    </aside>
+
+    <!-- PANELS -->
+    <div class="panel-wrap">
+
+      <!-- Founding fed panels (injected by JS) -->
+      <div id="founding-panels"></div>
+
+      <!-- Federation panel -->
+      <div class="panel" id="panel-federation">
+        <div class="grid-wrap" id="grid-view-wrap">
+          <div class="grid-header">
+            <span class="grid-label">FIELD AGENTS — CLICK TO OPEN FILE</span>
+            <span class="grid-range" id="grid-range"></span>
+          </div>
+          <div class="fed-grid" id="fed-grid"></div>
+        </div>
+        <!-- Expanded view (overlays grid) -->
+        <div class="exp-wrap" id="exp-wrap">
+          <button class="back-btn" onclick="closeExpanded()">← BACK TO ROSTER</button>
+          <div class="exp-inner">
+            <div class="exp-photo" id="exp-photo"></div>
+            <div class="exp-meta">
+              <div class="exp-label" id="exp-label"></div>
+              <h3 class="exp-name" id="exp-name"></h3>
+              <div class="exp-role" id="exp-role"></div>
+              <p class="exp-bio" id="exp-bio"></p>
+              <span class="exp-tag" id="exp-tag"></span>
+            </div>
+          </div>
+          <div class="exp-stamp" id="exp-stamp">FED CLEARED</div>
+        </div>
+      </div>
+
+      <!-- New Recruit panel -->
+      <div class="panel" id="panel-recruit">
+        <div class="recruit-panel">
+          <div class="recruit-watermark">CLASSIFIED</div>
+          <div class="recruit-file">
+            <div class="recruit-file-tab">PENDING</div>
+            <div class="recruit-q"><span class="recruit-q-mark">?</span></div>
+            <div class="recruit-fed-num" id="next-fed-num">FED-036 · UNASSIGNED</div>
+            <h3 class="recruit-title">Your File<br>Awaits.</h3>
+            <p class="recruit-body">The Federation has an opening. Pull up a chair, roll the dice, and claim your place at the table. Every great fed starts somewhere.</p>
+            <div style="margin-bottom:20px;">
+              <div class="redacted-row"><span class="redacted-key">NAME:</span><span class="redacted-bar"></span></div>
+              <div class="redacted-row"><span class="redacted-key">ROLE:</span><span class="redacted-bar"></span></div>
+              <div class="redacted-row"><span class="redacted-key">STATUS:</span><span class="redacted-val">PENDING RECRUITMENT</span></div>
+            </div>
+            <a href="#subscribe" class="recruit-cta">CLAIM MY FILE →</a>
+          </div>
+          <span class="recruit-stamp">AWAITING CLEARANCE</span>
+        </div>
+      </div>
+
+    </div><!-- /panel-wrap -->
+  </div><!-- /folder-inner -->
+</div><!-- /folder-outer -->
+
+<script>
+const COLOURS = [
+  '#e21f9c','#f6ae2d','#8ebd84','#63b2c9','#64156f','#ae0a7b',
+  '#e21f9c','#f6ae2d','#8ebd84','#63b2c9','#64156f','#ae0a7b',
+  '#e21f9c','#f6ae2d','#8ebd84','#63b2c9','#64156f','#ae0a7b',
+  '#e21f9c','#f6ae2d','#8ebd84','#63b2c9','#64156f','#ae0a7b',
+  '#e21f9c','#f6ae2d','#8ebd84','#63b2c9','#64156f','#ae0a7b',
+  '#e21f9c','#f6ae2d','#8ebd84','#63b2c9','#64156f'
+];
+
+let currentPanel = null;
+let allFeds = [], foundingFeds = [], regularFeds = [];
+
+fetch('./feds-roster.json')
+  .then(r => r.json())
+  .then(data => {
+    allFeds = data;
+    foundingFeds = data.filter(f => f.founding);
+    regularFeds  = data.filter(f => !f.founding);
+    init();
+  })
+  .catch(() => {
+    document.querySelector('.panel-wrap').innerHTML =
+      '<p style="padding:40px;font-family:\'Special Elite\',monospace;color:#ae0a7b;">⚠ Could not load feds.json — ensure it is in the same folder as this HTML file.</p>';
+  });
+
+function init() {
+  // Update counts
+  document.getElementById('total-count').textContent = allFeds.length + ' ACTIVE FEDS';
+
+  const lastRegular = regularFeds[regularFeds.length - 1];
+  const firstRegular = regularFeds[0];
+  if (firstRegular && lastRegular) {
+    document.getElementById('fed-tab-sub').textContent = firstRegular.num + ' → ' + lastRegular.num;
+    document.getElementById('grid-range').textContent  = firstRegular.num + ' → ' + lastRegular.num;
+  }
+  document.getElementById('fed-tab-badge').textContent = regularFeds.length;
+
+  // Next recruit number
+  const nextNum = allFeds.length + 1;
+  document.getElementById('next-fed-num').textContent =
+    'FED-' + String(nextNum).padStart(3,'0') + ' · UNASSIGNED';
+
+  buildFoundingSidebar();
+  buildFoundingPanels();
+  buildGrid();
+
+  // Activate first founding fed by default
+  if (foundingFeds.length > 0) {
+    switchTo('founding-0');
+  } else {
+    switchTo('federation');
+  }
+}
+
+function buildFoundingSidebar() {
+  const container = document.getElementById('founding-tabs');
+  foundingFeds.forEach((fed, i) => {
+    const color = COLOURS[i];
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn';
+    btn.id = 'tab-founding-' + i;
+    btn.onclick = () => switchTo('founding-' + i);
+
+    const badgeInner = fed.photo
+      ? `<img src="${fed.photo}" alt="${fed.name}" onerror="this.style.display='none';this.parentNode.textContent='${fed.initials}'">`
+      : fed.initials;
+
+    btn.innerHTML = `
+      <div class="tab-badge" style="background:${color};">${badgeInner}</div>
+      <div style="min-width:0;">
+        <div class="tab-name">${fed.name}</div>
+        <div class="tab-sub">${fed.num} · FOUNDING</div>
+      </div>
+    `;
+    container.appendChild(btn);
+  });
+}
+
+function buildFoundingPanels() {
+  const container = document.getElementById('founding-panels');
+  foundingFeds.forEach((fed, i) => {
+    const color = COLOURS[i];
+    const panel = document.createElement('div');
+    panel.className = 'panel';
+    panel.id = 'panel-founding-' + i;
+
+    const photoInner = fed.photo
+      ? `<img src="${fed.photo}" alt="${fed.name}" onerror="this.style.display='none';this.parentNode.textContent='${fed.initials}'">`
+      : fed.initials;
+
+    const bio = fed.bio ||
+      'A vital part of the Federation — bringing their unique expertise to the table and helping build a stronger, more connected Caribbean one game night at a time.';
+
+    panel.innerHTML = `
+      <div class="dossier">
+        <div class="dossier-top">
+          <div class="dossier-photo" style="background:${color};">${photoInner}</div>
+          <div class="dossier-meta">
+            <div class="dossier-num" style="color:${color};">FOUNDING FED · ${fed.num}</div>
+            <h3 class="dossier-name">${fed.name}</h3>
+            <div class="dossier-role">${fed.role}</div>
+            <p class="dossier-bio">${bio}</p>
+            <div class="dossier-tags">
+              <span class="tag" style="background:${color};">${fed.role.split(' ')[0].toUpperCase()}</span>
+              <span class="tag" style="background:var(--purple);">FOUNDING</span>
+            </div>
+          </div>
+        </div>
+        <div class="dossier-stamp" style="color:${color};">FOUNDING FED</div>
+      </div>
+    `;
+    container.appendChild(panel);
+  });
+}
+
+function buildGrid() {
+  const grid = document.getElementById('fed-grid');
+  grid.innerHTML = '';
+  regularFeds.forEach((fed, i) => {
+    const color = COLOURS[(i + foundingFeds.length) % COLOURS.length];
+    const card = document.createElement('button');
+    card.className = 'fed-card';
+    const badgeInner = fed.photo
+      ? `<img src="${fed.photo}" alt="${fed.name}" onerror="this.style.display='none';this.parentNode.textContent='${fed.initials}'">`
+      : fed.initials;
+    card.innerHTML = `
+      <div class="card-badge" style="background:${color};">${badgeInner}</div>
+      <div class="card-name">${fed.name}</div>
+      <div class="card-num">${fed.num}</div>
+      <div class="card-role">${fed.role}</div>
+    `;
+    card.onclick = () => openExpanded(fed, color);
+    grid.appendChild(card);
+  });
+}
+
+function openExpanded(fed, color) {
+  const photo = document.getElementById('exp-photo');
+  photo.style.background = color;
+  photo.innerHTML = fed.photo
+    ? `<img src="${fed.photo}" alt="${fed.name}" onerror="this.style.display='none';this.parentNode.textContent='${fed.initials}'">`
+    : fed.initials;
+
+  document.getElementById('exp-label').style.color = color;
+  document.getElementById('exp-label').textContent = 'FIELD AGENT · ' + fed.num;
+  document.getElementById('exp-name').textContent  = fed.name;
+  document.getElementById('exp-role').textContent  = fed.role;
+  document.getElementById('exp-bio').textContent   = fed.bio ||
+    'A vital part of the Federation — bringing their unique expertise to the table and helping build a stronger, more connected Caribbean one game night at a time.';
+
+  const tag = document.getElementById('exp-tag');
+  tag.style.background = color;
+  tag.textContent = fed.role;
+
+  const stamp = document.getElementById('exp-stamp');
+  stamp.style.color = color;
+
+  document.getElementById('exp-wrap').classList.add('visible');
+}
+
+function closeExpanded() {
+  document.getElementById('exp-wrap').classList.remove('visible');
+}
+
+/* ── PANEL SWITCHING ── */
+function getAllPanelIds() {
+  const ids = foundingFeds.map((_,i) => 'founding-' + i);
+  ids.push('federation', 'recruit');
+  return ids;
+}
+
+function switchTo(id) {
+  if (currentPanel === id) return;
+
+  // Animate out current
+  if (currentPanel) {
+    const oldPanel = document.getElementById('panel-' + currentPanel);
+    const oldTab   = document.getElementById('tab-' + currentPanel);
+    if (oldPanel) {
+      oldPanel.classList.add('leaving');
+      oldPanel.classList.remove('active');
+      setTimeout(() => oldPanel.classList.remove('leaving'), 250);
+    }
+    if (oldTab) oldTab.classList.remove('active');
+  }
+
+  // Close any expanded fed if leaving federation
+  if (currentPanel === 'federation') closeExpanded();
+
+  currentPanel = id;
+
+  // Animate in new
+  setTimeout(() => {
+    const newPanel = document.getElementById('panel-' + id);
+    const newTab   = document.getElementById('tab-' + id);
+    if (newPanel) newPanel.classList.add('active');
+    if (newTab)   newTab.classList.add('active');
+  }, currentPanel ? 80 : 0);
+}
+</script>
+</body>
+</html>

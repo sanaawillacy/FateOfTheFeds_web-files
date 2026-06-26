@@ -1,0 +1,308 @@
+[
+  {
+    "num": "FED-001",
+    "name": "Alex Ashley",
+    "role": "",
+    "initials": "AA",
+    "photo": "",
+    "founding": true,
+    "bio": "The architect of FOTF's vision. Alex brought the Caribbean table experience to life — fusing nostalgia, networking, and solar purpose into one game. Equal parts dreamer and doer, he's the reason the Federation exists at all."
+  },
+  {
+    "num": "FED-002",
+    "name": "Alina Sosa",
+    "role": "",
+    "initials": "AS",
+    "photo": "",
+    "founding": true,
+    "bio": "The engine behind every FOTF night. Alina turns vision into reality — from venue logistics to the community relationships that make every game session unforgettable. If Alex dreams it, Alina builds it."
+  },
+  {
+    "num": "FED-003",
+    "name": "Kwame Adu-Kyei",
+    "role": "",
+    "initials": "KA",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-004",
+    "name": "Lovejoy Afuakwah",
+    "role": "",
+    "initials": "LA",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-005",
+    "name": "Sula Arnett",
+    "role": "",
+    "initials": "SA",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-006",
+    "name": "Jibrael Basdeo",
+    "role": "",
+    "initials": "JB",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-007",
+    "name": "K-Cyanne Beckford",
+    "role": "",
+    "initials": "KB",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-008",
+    "name": "Atticus Bell",
+    "role": "",
+    "initials": "AB",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-009",
+    "name": "Jordan Bethune",
+    "role": "",
+    "initials": "JB",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-010",
+    "name": "Jaylin Bowens",
+    "role": "",
+    "initials": "JB",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-011",
+    "name": "Georgia Hight-Schickel",
+    "role": "",
+    "initials": "GH",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-012",
+    "name": "Lee Johnson",
+    "role": "",
+    "initials": "LJ",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-013",
+    "name": "Neil Johnson",
+    "role": "",
+    "initials": "NJ",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-014",
+    "name": "Dino Lewis",
+    "role": "",
+    "initials": "DL",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-015",
+    "name": "Emily Liz",
+    "role": "",
+    "initials": "EL",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-016",
+    "name": "Ophelie Loblack",
+    "role": "",
+    "initials": "OL",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-017",
+    "name": "Nathan McCook",
+    "role": "",
+    "initials": "NM",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-018",
+    "name": "Regina McLean",
+    "role": "",
+    "initials": "RM",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-019",
+    "name": "Amir Menoken",
+    "role": "",
+    "initials": "AM",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-020",
+    "name": "Maria Mixon",
+    "role": "",
+    "initials": "MM",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-021",
+    "name": "Jaara Ndaw",
+    "role": "",
+    "initials": "JN",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-022",
+    "name": "Isabela Pagan",
+    "role": "",
+    "initials": "IP",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-023",
+    "name": "Sana'i Parker",
+    "role": "",
+    "initials": "SP",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-024",
+    "name": "Nylah Passley",
+    "role": "",
+    "initials": "NP",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-025",
+    "name": "Yariledly Payano",
+    "role": "",
+    "initials": "YP",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-026",
+    "name": "Clinton Reid",
+    "role": "",
+    "initials": "CR",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-027",
+    "name": "Joel Shirley",
+    "role": "",
+    "initials": "JS",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-028",
+    "name": "Tavin Stabber",
+    "role": "",
+    "initials": "TS",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-029",
+    "name": "Khajay Tyrell",
+    "role": "",
+    "initials": "KT",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-030",
+    "name": "Abhyudaya Upreti",
+    "role": "",
+    "initials": "AU",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-031",
+    "name": "Max Vance",
+    "role": "",
+    "initials": "MV",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-032",
+    "name": "Tazzeel Walker",
+    "role": "",
+    "initials": "TW",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-033",
+    "name": "Sanáa Willacy",
+    "role": "",
+    "initials": "SW",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  },
+  {
+    "num": "FED-034",
+    "name": "Shomari Wiltshire",
+    "role": "",
+    "initials": "SW",
+    "photo": "",
+    "founding": false,
+    "bio": ""
+  }
+]
