@@ -2,7 +2,7 @@
   {
     "num": "FED-0G",
     "name": "Alex Ashley",
-    "role": "",
+    "role": "Founding Fed",
     "initials": "AA",
     "photo": "",
     "founding": true,
@@ -11,7 +11,7 @@
   {
     "num": "FED-0G",
     "name": "Alina Sosa",
-    "role": "",
+    "role": "Founding Fed",
     "initials": "AS",
     "photo": "",
     "founding": true,
@@ -20,7 +20,7 @@
   {
     "num": "FED-003",
     "name": "Kwame Adu-Kyei",
-    "role": "",
+    "role": "Primary Fed On Call",
     "initials": "KA",
     "photo": "",
     "founding": false,
@@ -29,7 +29,7 @@
   {
     "num": "FED-004",
     "name": "Lovejoy Afuakwah",
-    "role": "",
+    "role": "Federal Ambassador",
     "initials": "LA",
     "photo": "",
     "founding": false,
@@ -38,7 +38,7 @@
   {
     "num": "FED-005",
     "name": "Sula Arnett",
-    "role": "",
+    "role": "Photographer",
     "initials": "SA",
     "photo": "",
     "founding": false,
@@ -47,7 +47,7 @@
   {
     "num": "FED-006",
     "name": "Jibrael Basdeo",
-    "role": "",
+    "role": "DJ",
     "initials": "JB",
     "photo": "",
     "founding": false,
@@ -56,7 +56,7 @@
   {
     "num": "FED-007",
     "name": "K-Cyanne Beckford",
-    "role": "",
+    "role": "Automation Specialist, Player Information Liaison",
     "initials": "KB",
     "photo": "",
     "founding": false,
@@ -65,7 +65,7 @@
   {
     "num": "FED-008",
     "name": "Atticus Bell",
-    "role": "",
+    "role": "Photographer",
     "initials": "AB",
     "photo": "",
     "founding": false,
@@ -74,7 +74,7 @@
   {
     "num": "FED-009",
     "name": "Jordan Bethune",
-    "role": "",
+    "role": "Federal Ambassador",
     "initials": "JB",
     "photo": "",
     "founding": false,
@@ -83,7 +83,7 @@
   {
     "num": "FED-010",
     "name": "Jaylin Bowens",
-    "role": "",
+    "role": "Director of Film",
     "initials": "JB",
     "photo": "",
     "founding": false,
@@ -92,7 +92,7 @@
   {
     "num": "FED-011",
     "name": "Georgia Hight-Schickel",
-    "role": "",
+    "role": "Player Information Liaison",
     "initials": "GH",
     "photo": "",
     "founding": false,
@@ -101,7 +101,7 @@
   {
     "num": "FED-012",
     "name": "Lee Johnson",
-    "role": "",
+    "role": "Videographer",
     "initials": "LJ",
     "photo": "",
     "founding": false,
@@ -110,7 +110,7 @@
   {
     "num": "FED-013",
     "name": "Neil Johnson",
-    "role": "",
+    "role": "Public Engagement Coordinator",
     "initials": "NJ",
     "photo": "",
     "founding": false,
@@ -119,7 +119,7 @@
   {
     "num": "FED-014",
     "name": "Dino Lewis",
-    "role": "",
+    "role": "Federal Ambassador",
     "initials": "DL",
     "photo": "",
     "founding": false,
@@ -128,7 +128,7 @@
   {
     "num": "FED-015",
     "name": "Emily Liz",
-    "role": "",
+    "role": "Architect of Innovation",
     "initials": "EL",
     "photo": "",
     "founding": false,
@@ -137,7 +137,7 @@
   {
     "num": "FED-016",
     "name": "Ophelie Loblack",
-    "role": "",
+    "role": "Brand Manager",
     "initials": "OL",
     "photo": "",
     "founding": false,
@@ -146,7 +146,7 @@
   {
     "num": "FED-017",
     "name": "Nathan McCook",
-    "role": "",
+    "role": "Chief Medical Director, Fate CDC, Certified Fed",
     "initials": "NM",
     "photo": "",
     "founding": false,
@@ -155,7 +155,7 @@
   {
     "num": "FED-018",
     "name": "Regina McLean",
-    "role": "",
+    "role": "Federal Ambassador",
     "initials": "RM",
     "photo": "",
     "founding": false,
@@ -164,7 +164,7 @@
   {
     "num": "FED-019",
     "name": "Amir Menoken",
-    "role": "",
+    "role": "Graphic Designer",
     "initials": "AM",
     "photo": "",
     "founding": false,
@@ -173,7 +173,7 @@
   {
     "num": "FED-020",
     "name": "Maria Mixon",
-    "role": "",
+    "role": "Architect of Innovation",
     "initials": "MM",
     "photo": "",
     "founding": false,
@@ -182,7 +182,7 @@
   {
     "num": "FED-021",
     "name": "Jaara Ndaw",
-    "role": "",
+    "role": "DJ",
     "initials": "JN",
     "photo": "",
     "founding": false,
@@ -191,7 +191,7 @@
   {
     "num": "FED-022",
     "name": "Isabela Pagan",
-    "role": "",
+    "role": "Architect of Innovation",
     "initials": "IP",
     "photo": "",
     "founding": false,
@@ -200,7 +200,7 @@
   {
     "num": "FED-023",
     "name": "Sana'i Parker",
-    "role": "",
+    "role": "Photographer",
     "initials": "SP",
     "photo": "",
     "founding": false,
@@ -209,7 +209,7 @@
   {
     "num": "FED-024",
     "name": "Nylah Passley",
-    "role": "",
+    "role": "Player Information Liaison",
     "initials": "NP",
     "photo": "",
     "founding": false,
@@ -218,7 +218,7 @@
   {
     "num": "FED-025",
     "name": "Yariledly Payano",
-    "role": "",
+    "role": "Architect of Innovation",
     "initials": "YP",
     "photo": "",
     "founding": false,
@@ -227,7 +227,7 @@
   {
     "num": "FED-026",
     "name": "Clinton Reid",
-    "role": "",
+    "role": "Fate Forecaster",
     "initials": "CR",
     "photo": "",
     "founding": false,
@@ -236,7 +236,7 @@
   {
     "num": "FED-027",
     "name": "Joel Shirley",
-    "role": "",
+    "role": "Certified Fed",
     "initials": "JS",
     "photo": "",
     "founding": false,
@@ -244,8 +244,8 @@
   },
   {
     "num": "FED-028",
-    "name": "Tavin Stabber",
-    "role": "",
+    "name": "Tavin Staber",
+    "role": "Venture Development Associate",
     "initials": "TS",
     "photo": "",
     "founding": false,
@@ -254,7 +254,7 @@
   {
     "num": "FED-029",
     "name": "Khajay Tyrell",
-    "role": "",
+    "role": "Loophole Analyst & Advocate, Certified Fed",
     "initials": "KT",
     "photo": "",
     "founding": false,
@@ -263,7 +263,7 @@
   {
     "num": "FED-030",
     "name": "Abhyudaya Upreti",
-    "role": "",
+    "role": "Private Chef",
     "initials": "AU",
     "photo": "",
     "founding": false,
@@ -272,7 +272,7 @@
   {
     "num": "FED-031",
     "name": "Max Vance",
-    "role": "",
+    "role": "Fortune Inventory Manager",
     "initials": "MV",
     "photo": "",
     "founding": false,
@@ -281,7 +281,7 @@
   {
     "num": "FED-032",
     "name": "Tazzeel Walker",
-    "role": "",
+    "role": "Legal Researcher",
     "initials": "TW",
     "photo": "",
     "founding": false,
@@ -299,7 +299,7 @@
   {
     "num": "FED-034",
     "name": "Shomari Wiltshire",
-    "role": "",
+    "role": "Player Information Liaison",
     "initials": "SW",
     "photo": "",
     "founding": false,
